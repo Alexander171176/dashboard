@@ -11,6 +11,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    protected $guarded = false;
+    protected $table = 'users';
+
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
@@ -43,4 +46,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
 }

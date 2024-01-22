@@ -52,9 +52,12 @@
     `docker exec php-app php artisan migrate` <br>
 
 13) create seeders <br>
-    `php artisan make:seeder RoleSeeder` <br>
-    `php artisan make:seeder AdminSeeder` <br>
+    `docker exec php-app php artisan make:seeder RoleSeeder` <br>
+    `docker exec php-app php artisan make:seeder AdminSeeder` <br>
     `docker exec php-app php artisan db:seed` <br>
+
+14) Create AdminController <br>
+    `docker exec php-app php artisan make:controller Admin/AdminController` <br>
 
 13) Create Models, Migrations, Controllers, Factory <br>
     `docker exec php-app php artisan make:model Department -mcrf` <br>
