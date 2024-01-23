@@ -100,8 +100,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AdminController::class, 'index']);
-})->middleware(['auth', 'verified'])->name('admin.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+});
 
 // Группа маршрутов для панели администратора
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {

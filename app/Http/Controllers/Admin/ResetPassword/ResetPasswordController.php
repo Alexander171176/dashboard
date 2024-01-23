@@ -10,6 +10,6 @@ class ResetPasswordController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ResetPassword');
+        return Inertia::render('Admin/ResetPassword');
     }
 }

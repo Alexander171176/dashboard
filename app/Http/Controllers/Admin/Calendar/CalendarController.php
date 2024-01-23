@@ -10,6 +10,6 @@ class CalendarController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Calendar');
+        return Inertia::render('Admin/Calendar');
     }
 }

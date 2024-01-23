@@ -10,6 +10,6 @@ class MessagesController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Messages');
+        return Inertia::render('Admin/Messages');
     }
 }

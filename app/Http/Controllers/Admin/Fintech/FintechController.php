@@ -10,6 +10,6 @@ class FintechController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Fintech');
+        return Inertia::render('Admin/Fintech');
     }
 }

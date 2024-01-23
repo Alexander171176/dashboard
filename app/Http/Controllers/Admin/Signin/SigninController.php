@@ -10,6 +10,6 @@ class SigninController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Signin');
+        return Inertia::render('Admin/Signin');
     }
 }

@@ -3,7 +3,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
 import {Head} from '@inertiajs/vue3'
 
 export default {
-    name: 'Signin',
+    name: 'Signup',
     components: {
         Head,
         AdminLayout,
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-    <Head title="Signin"/>
+    <Head title="Signup"/>
     <AdminLayout>
         <main class="bg-white">
 
@@ -54,13 +54,28 @@ export default {
                         </div>
 
                         <div class="max-w-sm mx-auto px-4 py-8">
-                            <h1 class="text-3xl text-slate-800 font-bold mb-6">Welcome back! ✨</h1>
+                            <h1 class="text-3xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
                             <!-- Form -->
                             <form>
                                 <div class="space-y-4">
                                     <div>
-                                        <label class="block text-sm font-medium mb-1" for="email">Email Address</label>
+                                        <label class="block text-sm font-medium mb-1" for="email">Email Address <span
+                                            class="text-rose-500">*</span></label>
                                         <input id="email" class="form-input w-full" type="email"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1" for="name">Full Name <span
+                                            class="text-rose-500">*</span></label>
+                                        <input id="name" class="form-input w-full" type="text"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1" for="role">Your Role <span
+                                            class="text-rose-500">*</span></label>
+                                        <select id="role" class="form-select w-full">
+                                            <option>Designer</option>
+                                            <option>Developer</option>
+                                            <option>Accountant</option>
+                                        </select>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium mb-1" for="password">Password</label>
@@ -70,36 +85,24 @@ export default {
                                 </div>
                                 <div class="flex items-center justify-between mt-6">
                                     <div class="mr-1">
-                                        <router-link class="text-sm underline hover:no-underline" to="/reset-password">
-                                            Forgot Password?
-                                        </router-link>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="form-checkbox"/>
+                                            <span class="text-sm ml-2">Email me about product news.</span>
+                                        </label>
                                     </div>
-                                    <router-link class="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">
-                                        Sign
-                                        In
+                                    <router-link
+                                        class="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap"
+                                        to="/">Sign Up
                                     </router-link>
                                 </div>
                             </form>
                             <!-- Footer -->
                             <div class="pt-5 mt-6 border-t border-slate-200">
                                 <div class="text-sm">
-                                    Don’t you have an account?
-                                    <router-link class="font-medium text-indigo-500 hover:text-indigo-600" to="/signup">
-                                        Sign
-                                        Up
+                                    Have an account?
+                                    <router-link class="font-medium text-indigo-500 hover:text-indigo-600" to="/signin">
+                                        Sign In
                                     </router-link>
-                                </div>
-                                <!-- Warning -->
-                                <div class="mt-5">
-                                    <div class="bg-amber-100 text-amber-600 px-3 py-2 rounded">
-                                        <svg class="inline w-3 h-3 shrink-0 fill-current mr-2" viewBox="0 0 12 12">
-                                            <path
-                                                d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z"/>
-                                        </svg>
-                                        <span class="text-sm">
-                    To support you during the pandemic super pro features are free until March 31st.
-                  </span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +112,7 @@ export default {
 
                 <!-- Image -->
                 <div class="hidden md:block absolute top-0 bottom-0 right-0 md:w-1/2" aria-hidden="true">
-                    <img class="object-cover object-center w-full h-full" src="../../images/auth-image.jpg" width="760"
+                    <img class="object-cover object-center w-full h-full" src="../../../images/auth-image.jpg" width="760"
                          height="1024" alt="Authentication"/>
                 </div>
 

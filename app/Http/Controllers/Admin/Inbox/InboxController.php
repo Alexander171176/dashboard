@@ -10,6 +10,6 @@ class InboxController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Inbox');
+        return Inertia::render('Admin/Inbox');
     }
 }

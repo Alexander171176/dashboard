@@ -10,6 +10,6 @@ class CampaignsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Campaigns');
+        return Inertia::render('Admin/Campaigns');
     }
 }

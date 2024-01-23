@@ -10,6 +10,6 @@ class AnalyticsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Analytics');
+        return Inertia::render('Admin/Analytics');
     }
 }

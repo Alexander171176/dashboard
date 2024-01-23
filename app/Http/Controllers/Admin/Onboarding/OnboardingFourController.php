@@ -10,6 +10,6 @@ class OnboardingFourController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Onboarding04');
+        return Inertia::render('Admin/Onboarding04');
     }
 }
