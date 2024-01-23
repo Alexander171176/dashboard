@@ -59,12 +59,3 @@
 14) Create AdminController <br>
     `docker exec php-app php artisan make:controller Admin/AdminController` <br>
 
-13) Create Models, Migrations, Controllers, Factory <br>
-    `docker exec php-app php artisan make:model Department -mcrf` <br>
-    `docker exec php-app php artisan make:model Employee -mcrf` <br>
-
-14) Install npm dependencies <br>
-    `npm i @fortawesome/fontawesome-free sweetalert2 @ocrv/vue-tailwind-pagination vue-chartjs chart.js  datatables.net-vue3 datatables.net datatables.net-responsive-dt datatables.net-buttons jszip pdfmake` <br>
-
-15) Migrate and Seed <br>
-    `docker exec php-app php artisan migrate --seed` <br>
