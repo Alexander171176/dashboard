@@ -10,6 +10,6 @@ class PayController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ecommerce/Pay');
+        return Inertia::render('Admin/ecommerce/Pay');
     }
 }

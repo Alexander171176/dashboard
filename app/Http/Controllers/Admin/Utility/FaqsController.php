@@ -10,6 +10,6 @@ class FaqsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('utility/Faqs');
+        return Inertia::render('Admin/utility/Faqs');
     }
 }

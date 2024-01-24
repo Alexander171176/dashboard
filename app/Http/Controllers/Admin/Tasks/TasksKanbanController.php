@@ -10,6 +10,6 @@ class TasksKanbanController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('tasks/TasksKanban');
+        return Inertia::render('Admin/tasks/TasksKanban');
     }
 }

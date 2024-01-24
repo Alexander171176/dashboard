@@ -10,6 +10,6 @@ class TabsPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/TabsPage');
+        return Inertia::render('Admin/component/TabsPage');
     }
 }

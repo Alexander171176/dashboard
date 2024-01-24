@@ -10,6 +10,6 @@ class PaginationPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/PaginationPage');
+        return Inertia::render('Admin/component/PaginationPage');
     }
 }

@@ -1,8 +1,8 @@
 <script>
 import {ref} from 'vue'
 import AdminLayout from '@/Layouts/AdminLayout.vue'
-import InboxSidebar from '@/Partials/inbox/InboxSidebar.vue'
-import InboxBody from '@/Partials/inbox/InboxBody.vue'
+import InboxSidebar from '@/Partials/Admin/inbox/InboxSidebar.vue'
+import InboxBody from '@/Partials/Admin/inbox/InboxBody.vue'
 import {Head} from '@inertiajs/vue3'
 
 export default {

@@ -10,6 +10,6 @@ class RoadmapController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('utility/Roadmap');
+        return Inertia::render('Admin/utility/Roadmap');
     }
 }

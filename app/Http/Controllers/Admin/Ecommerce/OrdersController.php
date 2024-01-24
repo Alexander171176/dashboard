@@ -10,6 +10,6 @@ class OrdersController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ecommerce/Orders');
+        return Inertia::render('Admin/ecommerce/Orders');
     }
 }

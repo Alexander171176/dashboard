@@ -10,6 +10,6 @@ class FeedbackController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('settings/Feedback');
+        return Inertia::render('Admin/settings/Feedback');
     }
 }

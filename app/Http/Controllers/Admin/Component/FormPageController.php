@@ -10,6 +10,6 @@ class FormPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/FormPage');
+        return Inertia::render('Admin/component/FormPage');
     }
 }

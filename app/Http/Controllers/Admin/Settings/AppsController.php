@@ -10,6 +10,6 @@ class AppsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('settings/Apps');
+        return Inertia::render('Admin/settings/Apps');
     }
 }

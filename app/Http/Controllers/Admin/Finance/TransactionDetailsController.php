@@ -10,6 +10,6 @@ class TransactionDetailsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('finance/TransactionDetails');
+        return Inertia::render('Admin/finance/TransactionDetails');
     }
 }

@@ -10,6 +10,6 @@ class AccordionPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/AccordionPage');
+        return Inertia::render('Admin/component/AccordionPage');
     }
 }

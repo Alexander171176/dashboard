@@ -10,6 +10,6 @@ class TasksListController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('tasks/TasksList');
+        return Inertia::render('Admin/tasks/TasksList');
     }
 }

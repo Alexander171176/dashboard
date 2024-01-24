@@ -10,6 +10,6 @@ class CompanyProfileController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('job/CompanyProfile');
+        return Inertia::render('Admin/job/CompanyProfile');
     }
 }

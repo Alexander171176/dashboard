@@ -10,6 +10,6 @@ class CartTwoController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ecommerce/Cart2');
+        return Inertia::render('Admin/ecommerce/Cart2');
     }
 }

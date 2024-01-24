@@ -10,6 +10,6 @@ class ChangelogController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('utility/Changelog');
+        return Inertia::render('Admin/utility/Changelog');
     }
 }

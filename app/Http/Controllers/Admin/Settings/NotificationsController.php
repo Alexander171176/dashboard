@@ -10,6 +10,6 @@ class NotificationsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('settings/Notifications');
+        return Inertia::render('Admin/settings/Notifications');
     }
 }

@@ -1,8 +1,8 @@
 <script setup>
 import {ref} from 'vue'
-import Sidebar from '@/Partials/Sidebar.vue'
-import Header from '@/Partials/Header.vue'
-import Banner from '@/Partials/Banner.vue'
+import Sidebar from '@/Partials/Admin/Sidebar.vue'
+import Header from '@/Partials/Admin/Header.vue'
+import Banner from '@/Partials/Admin/Banner.vue'
 
 const sidebarOpen = ref(false);
 </script>

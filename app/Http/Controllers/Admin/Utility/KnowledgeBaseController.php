@@ -10,6 +10,6 @@ class KnowledgeBaseController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('utility/KnowledgeBase');
+        return Inertia::render('Admin/utility/KnowledgeBase');
     }
 }

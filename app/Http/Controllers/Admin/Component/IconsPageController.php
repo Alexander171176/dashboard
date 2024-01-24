@@ -10,6 +10,6 @@ class IconsPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/IconsPage');
+        return Inertia::render('Admin/component/IconsPage');
     }
 }

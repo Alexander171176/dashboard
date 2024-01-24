@@ -10,6 +10,6 @@ class AlertPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/AlertPage');
+        return Inertia::render('Admin/component/AlertPage');
     }
 }

@@ -10,6 +10,6 @@ class UsersTilesController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('community/UsersTiles');
+        return Inertia::render('Admin/community/UsersTiles');
     }
 }

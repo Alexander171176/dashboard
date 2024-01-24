@@ -10,6 +10,6 @@ class ShopOneController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ecommerce/Shop');
+        return Inertia::render('Admin/ecommerce/Shop');
     }
 }

@@ -10,6 +10,6 @@ class DropdownPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/DropdownPage');
+        return Inertia::render('Admin/component/DropdownPage');
     }
 }

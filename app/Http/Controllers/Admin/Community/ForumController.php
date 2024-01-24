@@ -10,6 +10,6 @@ class ForumController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('community/Forum');
+        return Inertia::render('Admin/community/Forum');
     }
 }

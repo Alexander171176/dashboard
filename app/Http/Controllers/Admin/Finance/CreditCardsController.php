@@ -10,6 +10,6 @@ class CreditCardsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('finance/CreditCards');
+        return Inertia::render('Admin/finance/CreditCards');
     }
 }

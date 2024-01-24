@@ -10,6 +10,6 @@ class EmptyStateController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('utility/EmptyState');
+        return Inertia::render('Admin/utility/EmptyState');
     }
 }

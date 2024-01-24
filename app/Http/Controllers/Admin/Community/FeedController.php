@@ -10,6 +10,6 @@ class FeedController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('community/Feed');
+        return Inertia::render('Admin/community/Feed');
     }
 }

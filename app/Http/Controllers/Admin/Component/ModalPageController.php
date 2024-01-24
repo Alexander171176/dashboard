@@ -10,6 +10,6 @@ class ModalPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/ModalPage');
+        return Inertia::render('Admin/component/ModalPage');
     }
 }

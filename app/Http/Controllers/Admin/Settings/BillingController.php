@@ -10,6 +10,6 @@ class BillingController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('settings/Billing');
+        return Inertia::render('Admin/settings/Billing');
     }
 }

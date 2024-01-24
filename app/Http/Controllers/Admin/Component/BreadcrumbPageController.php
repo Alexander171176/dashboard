@@ -10,6 +10,6 @@ class BreadcrumbPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/BreadcrumbPage');
+        return Inertia::render('Admin/component/BreadcrumbPage');
     }
 }

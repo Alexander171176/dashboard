@@ -10,6 +10,6 @@ class BadgePageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/BadgePage');
+        return Inertia::render('Admin/component/BadgePage');
     }
 }

@@ -10,6 +10,6 @@ class InvoicesController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ecommerce/Invoices');
+        return Inertia::render('Admin/ecommerce/Invoices');
     }
 }

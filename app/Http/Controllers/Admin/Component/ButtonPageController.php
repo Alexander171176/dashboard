@@ -10,6 +10,6 @@ class ButtonPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/ButtonPage');
+        return Inertia::render('Admin/component/ButtonPage');
     }
 }

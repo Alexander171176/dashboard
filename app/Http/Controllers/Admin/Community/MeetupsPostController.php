@@ -10,6 +10,6 @@ class MeetupsPostController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('community/MeetupsPost');
+        return Inertia::render('Admin/community/MeetupsPost');
     }
 }

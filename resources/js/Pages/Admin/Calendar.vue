@@ -1,8 +1,8 @@
 <script>
 import {ref, onMounted} from 'vue'
 import AdminLayout from '@/Layouts/AdminLayout.vue'
-import Sidebar from '@/Partials/Sidebar.vue'
-import Header from '@/Partials/Header.vue'
+import Sidebar from '@/Partials/Admin/Sidebar.vue'
+import Header from '@/Partials/Admin/Header.vue'
 import {Head} from '@inertiajs/vue3'
 
 export default {

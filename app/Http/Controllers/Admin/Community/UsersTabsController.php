@@ -10,6 +10,6 @@ class UsersTabsController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('community/UsersTabs');
+        return Inertia::render('Admin/community/UsersTabs');
     }
 }

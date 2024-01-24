@@ -1,27 +1,27 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue'
-import WelcomeBanner from '@/Partials/dashboard/WelcomeBanner.vue'
-import DashboardAvatars from '@/Partials/dashboard/DashboardAvatars.vue'
-import FilterButton from '@/Components/DropdownFilter.vue'
-import Datepicker from '@/Components/Datepicker.vue'
-import DashboardCard01 from '@/Partials/dashboard/DashboardCard01.vue'
-import DashboardCard02 from '@/Partials/dashboard/DashboardCard02.vue'
-import DashboardCard03 from '@/Partials/dashboard/DashboardCard03.vue'
-import DashboardCard04 from '@/Partials/dashboard/DashboardCard04.vue'
-import DashboardCard05 from '@/Partials/dashboard/DashboardCard05.vue'
-import DashboardCard06 from '@/Partials/dashboard/DashboardCard06.vue'
-import DashboardCard07 from '@/Partials/dashboard/DashboardCard07.vue'
-import DashboardCard08 from '@/Partials/dashboard/DashboardCard08.vue'
-import DashboardCard09 from '@/Partials/dashboard/DashboardCard09.vue'
-import DashboardCard10 from '@/Partials/dashboard/DashboardCard10.vue'
-import DashboardCard11 from '@/Partials/dashboard/DashboardCard11.vue'
-import DashboardCard12 from '@/Partials/dashboard/DashboardCard12.vue'
-import DashboardCard13 from '@/Partials/dashboard/DashboardCard13.vue'
+import WelcomeBanner from '@/Partials/Admin/dashboard/WelcomeBanner.vue'
+import DashboardAvatars from '@/Partials/Admin/dashboard/DashboardAvatars.vue'
+import FilterButton from '@/Components/Admin/DropdownFilter.vue'
+import Datepicker from '@/Components/Admin/Datepicker.vue'
+import DashboardCard01 from '@/Partials/Admin/dashboard/DashboardCard01.vue'
+import DashboardCard02 from '@/Partials/Admin/dashboard/DashboardCard02.vue'
+import DashboardCard03 from '@/Partials/Admin/dashboard/DashboardCard03.vue'
+import DashboardCard04 from '@/Partials/Admin/dashboard/DashboardCard04.vue'
+import DashboardCard05 from '@/Partials/Admin/dashboard/DashboardCard05.vue'
+import DashboardCard06 from '@/Partials/Admin/dashboard/DashboardCard06.vue'
+import DashboardCard07 from '@/Partials/Admin/dashboard/DashboardCard07.vue'
+import DashboardCard08 from '@/Partials/Admin/dashboard/DashboardCard08.vue'
+import DashboardCard09 from '@/Partials/Admin/dashboard/DashboardCard09.vue'
+import DashboardCard10 from '@/Partials/Admin/dashboard/DashboardCard10.vue'
+import DashboardCard11 from '@/Partials/Admin/dashboard/DashboardCard11.vue'
+import DashboardCard12 from '@/Partials/Admin/dashboard/DashboardCard12.vue'
+import DashboardCard13 from '@/Partials/Admin/dashboard/DashboardCard13.vue'
 import {Head} from '@inertiajs/vue3'
 </script>
 
 <template>
-    <Head title="Dashboard"/>
+    <Head title="Admin"/>
 
     <AdminLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">

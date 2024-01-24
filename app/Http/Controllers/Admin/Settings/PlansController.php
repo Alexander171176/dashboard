@@ -10,6 +10,6 @@ class PlansController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('settings/Plans');
+        return Inertia::render('Admin/settings/Plans');
     }
 }

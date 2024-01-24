@@ -10,6 +10,6 @@ class PageNotFoundController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('utility/PageNotFound');
+        return Inertia::render('Admin/utility/PageNotFound');
     }
 }

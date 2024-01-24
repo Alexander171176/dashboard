@@ -10,6 +10,6 @@ class AccountController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('settings/Account');
+        return Inertia::render('Admin/settings/Account');
     }
 }

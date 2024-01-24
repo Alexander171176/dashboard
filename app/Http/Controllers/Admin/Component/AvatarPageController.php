@@ -10,6 +10,6 @@ class AvatarPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/AvatarPage');
+        return Inertia::render('Admin/component/AvatarPage');
     }
 }

@@ -33,12 +33,12 @@
 
 <script>
 import { ref, onMounted, watch } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import MessagesSidebar from '../../Partials/messages/MessagesSidebar.vue'
-import MessagesHeader from '../../Partials/messages/MessagesHeader.vue'
-import MessagesBody from '../../Partials/messages/MessagesBody.vue'
-import MessagesFooter from '../../Partials/messages/MessagesFooter.vue'
+import Sidebar from '../../Partials/Admin/Sidebar.vue'
+import Header from '../../Partials/Admin/Header.vue'
+import MessagesSidebar from '../../Partials/Admin/messages/MessagesSidebar.vue'
+import MessagesHeader from '../../Partials/Admin/messages/MessagesHeader.vue'
+import MessagesBody from '../../Partials/Admin/messages/MessagesBody.vue'
+import MessagesFooter from '../../Partials/Admin/messages/MessagesFooter.vue'
 
 export default {
     name: 'Messages',

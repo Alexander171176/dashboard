@@ -10,6 +10,6 @@ class JobPostController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('job/JobPost');
+        return Inertia::render('Admin/job/JobPost');
     }
 }

@@ -10,6 +10,6 @@ class ProductController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('ecommerce/Product');
+        return Inertia::render('Admin/ecommerce/Product');
     }
 }

@@ -10,6 +10,6 @@ class TooltipPageController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        return Inertia::render('component/TooltipPage');
+        return Inertia::render('Admin/component/TooltipPage');
     }
 }
