@@ -1,55 +1,72 @@
-<script setup>
-import {ref, onMounted, onUnmounted, watch} from 'vue'
-import {useRouter} from 'vue-router'
-import SidebarLinkGroup from './SidebarLinkGroup.vue'
+<script>
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
+import SidebarLinkGroup from './SidebarLinkGroup.vue'
 import LinkGroup from './LinkGroup.vue'
 import {Link} from '@inertiajs/vue3';
 
-const props = defineProps(['sidebarOpen'])
-const emit = defineEmits()
+export default {
+    name: 'Sidebar',
+    props: ['sidebarOpen'],
+    components: {
+        SidebarLinkGroup,
+        LinkGroup,
+        Link,
+    },
+    setup(props, { emit }) {
 
-const trigger = ref(null)
-const sidebar = ref(null)
-const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
-const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
-const currentRoute = useRouter().currentRoute.value
+        const trigger = ref(null)
+        const sidebar = ref(null)
 
-// close on click outside
-const clickHandler = ({target}) => {
-    if (!sidebar.value || !trigger.value) return
-    if (!props.sidebarOpen || sidebar.value.contains(target) || trigger.value.contains(target)) return
-    emit('close-sidebar')
-}
+        const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
+        const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
 
-// close if the esc key is pressed
-const keyHandler = ({keyCode}) => {
-    if (!props.sidebarOpen || keyCode !== 27) return
-    emit('close-sidebar')
-}
+        const currentRoute = useRouter().currentRoute.value
 
-onMounted(() => {
-    document.addEventListener('click', clickHandler)
-    document.addEventListener('keydown', keyHandler)
-})
+        // close on click outside
+        const clickHandler = ({ target }) => {
+            if (!sidebar.value || !trigger.value) return
+            if (
+                !props.sidebarOpen ||
+                sidebar.value.contains(target) ||
+                trigger.value.contains(target)
+            ) return
+            emit('close-sidebar')
+        }
 
-onUnmounted(() => {
-    document.removeEventListener('click', clickHandler)
-    document.removeEventListener('keydown', keyHandler)
-})
+        // close if the esc key is pressed
+        const keyHandler = ({ keyCode }) => {
+            if (!props.sidebarOpen || keyCode !== 27) return
+            emit('close-sidebar')
+        }
 
-watch(sidebarExpanded, () => {
-    localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
-    if (sidebarExpanded.value) {
-        document.querySelector('body').classList.add('sidebar-expanded')
-    } else {
-        document.querySelector('body').classList.remove('sidebar-expanded')
-    }
-})
+        onMounted(() => {
+            document.addEventListener('click', clickHandler)
+            document.addEventListener('keydown', keyHandler)
+        })
 
-// не забудьте вернуть переменные
-{
-    trigger, sidebar, sidebarExpanded, currentRoute
+        onUnmounted(() => {
+            document.removeEventListener('click', clickHandler)
+            document.removeEventListener('keydown', keyHandler)
+        })
+
+        watch(sidebarExpanded, () => {
+            localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
+            if (sidebarExpanded.value) {
+                document.querySelector('body').classList.add('sidebar-expanded')
+            } else {
+                document.querySelector('body').classList.remove('sidebar-expanded')
+            }
+        })
+
+        return {
+            trigger,
+            sidebar,
+            sidebarExpanded,
+            currentRoute,
+        }
+    },
 }
 </script>
 
@@ -103,12 +120,61 @@ watch(sidebarExpanded, () => {
 
             <!-- Links -->
             <div class="space-y-8">
+
                 <!-- Pages group -->
                 <div>
                     <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
                         <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
                               aria-hidden="true">•••</span>
                         <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Страницы</span>
+                    </h3>
+                    <ul class="mt-3">
+
+                        <!-- Admin -->
+                        <LinkGroup :href="route('admin.index')" :active="route().current('admin.index')"
+                                   class="mb-3 block text-slate-200 truncate transition duration-150">
+                            <div class="flex items-center justify-between">
+                                <div class="grow flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-indigo-500"
+                                              d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"/>
+                                        <path class="fill-current text-indigo-300"
+                                              d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Главная</span>
+                                </div>
+                            </div>
+                        </LinkGroup>
+
+                        <!-- Dashboard -->
+                        <LinkGroup :href="route('dashboard')" :active="route().current('dashboard')"
+                                   class="mb-3 block text-slate-200 truncate transition duration-150">
+                            <div class="flex items-center justify-between">
+                                <div class="grow flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <path class="fill-current text-indigo-500"
+                                              d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"/>
+                                        <path class="fill-current text-indigo-600"
+                                              d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z"/>
+                                        <path class="fill-current text-indigo-200"
+                                              d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Панель Пользователя</span>
+                                </div>
+                            </div>
+                        </LinkGroup>
+
+                    </ul>
+                </div>
+
+                <!-- Pages group -->
+                <div>
+                    <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
+                        <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
+                              aria-hidden="true">•••</span>
+                        <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Demo</span>
                     </h3>
                     <ul class="mt-3">
 
@@ -158,6 +224,24 @@ watch(sidebarExpanded, () => {
                                             >
                                                 <span
                                                     class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Главная</span>
+                                            </a>
+                                        </li>
+                                    </router-link>
+                                    <router-link :to="{ name: 'dashboard' }" custom
+                                                 v-slot="{ href, navigate, isExactActive }">
+                                        <li class="mb-1 last:mb-0">
+                                            <a
+                                                class="block transition duration-150 truncate"
+                                                :class="{
+                                                    'text-indigo-500': isExactActive,
+                                                    'text-slate-400': !isExactActive,
+                                                    'hover:text-slate-200': !isExactActive
+                                                }"
+                                                :href="href || '/dashboard'"
+                                                @click="() => { navigate(); }"
+                                            >
+                                                <span
+                                                    class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Панель управления</span>
                                             </a>
                                         </li>
                                     </router-link>
