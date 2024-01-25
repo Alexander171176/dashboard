@@ -1,8 +1,12 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import Sidebar from '@/Partials/User/Sidebar.vue'
 import Header from '@/Partials/User/Header.vue'
 import Banner from '@/Partials/User/Banner.vue'
+import {usePage} from '@inertiajs/vue3'
+
+const page = usePage()
+const user = computed(() => page.props.auth.user)
 
 const sidebarOpen = ref(false);
 </script>

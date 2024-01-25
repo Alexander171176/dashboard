@@ -1,72 +1,48 @@
-<script>
+<script setup>
 import {ref, onMounted, onUnmounted, watch} from 'vue'
 import {useRouter} from 'vue-router'
-
-import SidebarLinkGroup from './SidebarLinkGroup.vue'
 import LinkGroup from './LinkGroup.vue'
 import {Link} from '@inertiajs/vue3';
+import {usePermission} from "@/composables/permissions"
 
-export default {
-    name: 'Sidebar',
-    props: ['sidebarOpen'],
-    components: {
-        SidebarLinkGroup,
-        LinkGroup,
-        Link,
-    },
-    setup(props, {emit}) {
+const {hasRole} = usePermission();
+const props = defineProps(['sidebarOpen'])
+const emit = defineEmits()
+const trigger = ref(null)
+const sidebar = ref(null)
+const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
+const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
+const currentRoute = useRouter().currentRoute.value
 
-        const trigger = ref(null)
-        const sidebar = ref(null)
-
-        const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
-        const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
-
-        const currentRoute = useRouter().currentRoute.value
-
-        // close on click outside
-        const clickHandler = ({target}) => {
-            if (!sidebar.value || !trigger.value) return
-            if (
-                !props.sidebarOpen ||
-                sidebar.value.contains(target) ||
-                trigger.value.contains(target)
-            ) return
-            emit('close-sidebar')
-        }
-
-        // close if the esc key is pressed
-        const keyHandler = ({keyCode}) => {
-            if (!props.sidebarOpen || keyCode !== 27) return
-            emit('close-sidebar')
-        }
-
-        onMounted(() => {
-            document.addEventListener('click', clickHandler)
-            document.addEventListener('keydown', keyHandler)
-        })
-
-        onUnmounted(() => {
-            document.removeEventListener('click', clickHandler)
-            document.removeEventListener('keydown', keyHandler)
-        })
-
-        watch(sidebarExpanded, () => {
-            localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
-            if (sidebarExpanded.value) {
-                document.querySelector('body').classList.add('sidebar-expanded')
-            } else {
-                document.querySelector('body').classList.remove('sidebar-expanded')
-            }
-        })
-
-        return {
-            trigger,
-            sidebar,
-            sidebarExpanded,
-            currentRoute,
-        }
-    },
+// close on click outside
+const clickHandler = ({target}) => {
+    if (!sidebar.value || !trigger.value) return
+    if (!props.sidebarOpen || sidebar.value.contains(target) || trigger.value.contains(target)) return
+    emit('close-sidebar')
+}
+// close if the esc key is pressed
+const keyHandler = ({keyCode}) => {
+    if (!props.sidebarOpen || keyCode !== 27) return
+    emit('close-sidebar')
+}
+onMounted(() => {
+    document.addEventListener('click', clickHandler)
+    document.addEventListener('keydown', keyHandler)
+})
+onUnmounted(() => {
+    document.removeEventListener('click', clickHandler)
+    document.removeEventListener('keydown', keyHandler)
+})
+watch(sidebarExpanded, () => {
+    localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
+    if (sidebarExpanded.value) {
+        document.querySelector('body').classList.add('sidebar-expanded')
+    } else {
+        document.querySelector('body').classList.remove('sidebar-expanded')
+    }
+})
+{
+    trigger, sidebar, sidebarExpanded, currentRoute
 }
 </script>
 
@@ -150,7 +126,8 @@ export default {
                         </LinkGroup>
 
                         <!-- Admin -->
-                        <LinkGroup :href="route('admin.index')" :active="route().current('admin.index')"
+                        <LinkGroup v-if="hasRole('admin')"
+                                   :href="route('admin.index')" :active="route().current('admin.index')"
                                    class="mb-3 block text-slate-200 truncate transition duration-150">
                             <div class="flex items-center justify-between">
                                 <div class="grow flex items-center">
