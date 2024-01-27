@@ -8,6 +8,7 @@ import InputError from '@/Components/Admin/InputError.vue'
 import InputLabel from '@/Components/Admin/InputLabel.vue'
 import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
 import TextInput from '@/Components/Admin/TextInput.vue'
+import { defineProps } from 'vue'
 
 const props = defineProps({
     role: {
