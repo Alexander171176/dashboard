@@ -7,7 +7,7 @@ import UsersTable from "@/Components/Admin/Users/UsersTable.vue"
 import {Head} from '@inertiajs/vue3'
 import { defineProps } from 'vue'
 
-const props = defineProps(['users'])
+const props = defineProps(['users', 'usersCount']);
 </script>
 
 <template>
@@ -42,7 +42,7 @@ const props = defineProps(['users'])
             </div>
 
             <!-- Page Intro -->
-            <UsersTable :users="users" />
+            <UsersTable :users="users" :usersCount="usersCount" />
 
         </div>
     </AdminLayout>

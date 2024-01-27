@@ -7,7 +7,7 @@ import PermissionsTable from "@/Components/Admin/Permissions/PermissionsTable.vu
 import {Head} from '@inertiajs/vue3'
 import { defineProps } from 'vue'
 
-const props = defineProps(['permissions'])
+const props = defineProps(['permissions', 'permissionsCount'])
 </script>
 
 <template>
@@ -42,7 +42,7 @@ const props = defineProps(['permissions'])
             </div>
 
             <!-- Page Intro -->
-            <PermissionsTable :permissions="permissions" />
+            <PermissionsTable :permissions="permissions" :permissionsCount="permissionsCount" />
 
         </div>
     </AdminLayout>

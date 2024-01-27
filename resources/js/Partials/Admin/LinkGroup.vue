@@ -9,7 +9,7 @@ const props = defineProps({
     },
     activeClass: {
         type: String,
-        default: 'text-pink-500' // Замените на класс для активного состояния
+        default: 'text-yellow-200' // Замените на класс для активного состояния
     },
     inactiveClass: {
         type: String,
