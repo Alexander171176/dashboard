@@ -17,7 +17,7 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():Response
+    public function index(): Response
     {
         $roles = Role::all();
         $rolesCount = DB::table('roles')->count();
@@ -29,20 +29,20 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create():Response
-    {
-        return Inertia::render('Admin/Roles/Create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateRoleRequest $request)
+    public function store(CreateRoleRequest $request): Redirectresponse
     {
         Role::create($request->validated());
         return to_route('roles.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): Response
+    {
+        return Inertia::render('Admin/Roles/Create');
     }
 
     /**
@@ -67,7 +67,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateRoleRequest $request, string $id)
+    public function update(CreateRoleRequest $request, string $id): Redirectresponse
     {
         $role = Role::findById($id);
         $role->update($request->validated());

@@ -71,4 +71,4 @@
 
 17) Create requests <br>
     `docker exec php-app php artisan make:request CreateRoleRequest` <br>
-    `docker exec php-app php artisan make:request UpdateRoleRequest` <br>
+    `docker exec php-app php artisan make:request CreatePermissionRequest` <br>
