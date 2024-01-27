@@ -9,7 +9,7 @@ const props = defineProps({
     },
     activeClass: {
         type: String,
-        default: 'text-indigo-500' // Замените на класс для активного состояния
+        default: 'text-pink-500' // Замените на класс для активного состояния
     },
     inactiveClass: {
         type: String,
@@ -21,7 +21,15 @@ const props = defineProps({
 
 <template>
     <Link :href="href"
-          :class="{ 'inline-flex items-center w-full text-sm font-semibold dark:relative': active, [activeClass]: active, [inactiveClass]: !active }">
-        <span class="flex ml-3"><slot></slot></span>
+          :class="{
+            'inline-flex items-center w-full text-sm font-semibold dark:relative': true,
+            [activeClass]: active,
+            [inactiveClass]: !active
+          }">
+        <span class="flex ml-3" :class="{ [activeClass]: active, [inactiveClass]: !active }">
+            <slot></slot>
+        </span>
     </Link>
 </template>
+
+

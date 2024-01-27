@@ -59,3 +59,16 @@
 14) Create AdminController <br>
     `docker exec php-app php artisan make:controller Admin/AdminController` <br>
 
+15) Create resource UserResource <br>
+    `docker exec php-app php artisan make:resource UserResource` <br>
+    `docker exec php-app php artisan make:resource RoleResource` <br>
+    `docker exec php-app php artisan make:resource PermissionResource` <br>
+
+16) Create resource controllers UserController,RoleController,PermissionController <br>
+    `docker exec php-app php artisan make:controller Crud/UserController --resource` <br>
+    `docker exec php-app php artisan make:controller Crud/RoleController --resource` <br>
+    `docker exec php-app php artisan make:controller Crud/PermissionController --resource` <br>
+
+17) Create requests <br>
+    `docker exec php-app php artisan make:request CreateRoleRequest` <br>
+    `docker exec php-app php artisan make:request UpdateRoleRequest` <br>

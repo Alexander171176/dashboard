@@ -152,6 +152,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // Группа маршрутов для панели администратора
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
 
+    // Группа маршрутов CRUD
+    Route::resource('/users', \App\Http\Controllers\CRUD\UserController::class);
+    Route::resource('/roles', \App\Http\Controllers\CRUD\RoleController::class);
+    Route::resource('/permissions', \App\Http\Controllers\CRUD\PermissionController::class);
+
     Route::get('/analytics', [App\Http\Controllers\Admin\Analytics\AnalyticsController::class, 'index'])->name('admin.analytics.index');// Маршрут для Analytics
     Route::get('/fintech', [App\Http\Controllers\Admin\Fintech\FintechController::class, 'index'])->name('admin.fintech.index');// Маршрут для Fintech
     Route::get('/calendar', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'index'])->name('admin.calendar.index');// Маршрут для Calendar
