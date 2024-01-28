@@ -72,4 +72,14 @@
 17) Create requests <br>
     `docker exec php-app php artisan make:request CreateRoleRequest` <br>
     `docker exec php-app php artisan make:request CreatePermissionRequest` <br>
-    `docker exec php-app php artisan make:request CreateUserRequest` <br>
+
+18) Install vue-multiselect <br>
+    `npm install vue-multiselect@next` <br>
+
+19) Create revoke controller <br>
+    `docker exec php-app php artisan make:controller CRUD/Ivokable/RemovePermissionFromRoleController --invokable` <br>
+    `docker exec php-app php artisan make:controller CRUD/Ivokable/RemoveRoleFromUserController --invokable` <br>
+    `docker exec php-app php artisan make:controller CRUD/Ivokable/RemovePermissionFromUserController --invokable` <br>
+
+20) Create resource UserSharedResource <br>
+    `docker exec php-app php artisan make:resource UserSharedResource` <br>

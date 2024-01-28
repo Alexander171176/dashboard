@@ -8,9 +8,16 @@ import InputError from '@/Components/Admin/InputError.vue'
 import InputLabel from '@/Components/Admin/InputLabel.vue'
 import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
 import TextInput from '@/Components/Admin/TextInput.vue'
+import VueMultiselect from 'vue-multiselect'
+import {defineProps} from "vue";
+
+defineProps({
+    permissions: Array,
+})
 
 const form = useForm({
-    name: ""
+    name: "",
+    permissions: [],
 })
 </script>
 
@@ -46,10 +53,10 @@ const form = useForm({
             </div>
 
             <!-- Page Intro -->
-            <div class="flex justify-start">
+            <div class="flex justify-center">
                 <div class="bg-white p-5 shadow-lg rounded-sm border border-slate-200 w-80">
                     <form @submit.prevent="form.post(route('roles.store'))">
-                        <div>
+                        <div class="mb-3">
                             <InputLabel for="name" value="Название Роли" />
 
                             <TextInput
@@ -62,6 +69,17 @@ const form = useForm({
                             />
 
                             <InputError class="mt-2" :message="form.errors.name" />
+                        </div>
+
+                        <div>
+                            <VueMultiselect v-model="form.permissions"
+                                            :options="permissions"
+                                            :multiple="true"
+                                            :close-on-select="true"
+                                            placeholder="Выбрать"
+                                            label="name"
+                                            track-by="id"
+                            />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
@@ -80,3 +98,5 @@ const form = useForm({
         </div>
     </AdminLayout>
 </template>
+
+<style src="../../../../css/vue-multiselect.min.css"></style>

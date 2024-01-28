@@ -24,6 +24,7 @@ class CreateRoleRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:20', Rule::unique('roles', 'name')->ignore($this->role)],
+            'permissions' => ['sometimes', 'array']
         ];
     }
 }

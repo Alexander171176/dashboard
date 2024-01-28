@@ -54,7 +54,7 @@ const form = useForm({
             </div>
 
             <!-- Page Intro -->
-            <div class="flex justify-start">
+            <div class="flex justify-center">
                 <div class="bg-white p-5 shadow-lg rounded-sm border border-slate-200 w-80">
                     <form @submit.prevent="form.put(route('permissions.update', permission.id))">
                         <div>

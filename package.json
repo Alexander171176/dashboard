@@ -14,6 +14,7 @@
         "flatpickr": "^4.6.13",
         "moment": "^2.29.4",
         "vue-flatpickr-component": "^11.0.3",
+        "vue-multiselect": "^3.0.0-beta.3",
         "vue-router": "^4.0.13"
     },
     "devDependencies": {

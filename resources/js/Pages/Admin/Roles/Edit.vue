@@ -8,18 +8,31 @@ import InputError from '@/Components/Admin/InputError.vue'
 import InputLabel from '@/Components/Admin/InputLabel.vue'
 import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
 import TextInput from '@/Components/Admin/TextInput.vue'
-import { defineProps } from 'vue'
+import VueMultiselect from 'vue-multiselect'
+import DeleteButton from "@/Components/Admin/Buttons/DeleteButton.vue";
+import {defineProps, onMounted, watch} from 'vue'
 
 const props = defineProps({
     role: {
         type: Object,
         required: true
-    }
+    },
+    permissions: Array,
 })
 
 const form = useForm({
-    name: props.role.name
+    name: props.role.name,
+    permissions: []
 })
+
+onMounted( () => {
+    form.permissions = props.role?.permissions;
+})
+
+watch(
+    () => props.role,
+    () => (form.permissions = props.role?.permissions)
+)
 </script>
 
 <template>
@@ -54,11 +67,11 @@ const form = useForm({
             </div>
 
             <!-- Page Intro -->
-            <div class="flex justify-start">
+            <div class="flex justify-center">
                 <div class="bg-white p-5 shadow-lg rounded-sm border border-slate-200 w-80">
                     <form @submit.prevent="form.put(route('roles.update', role.id))">
-                        <div>
-                            <InputLabel for="name" value="Название Роли" />
+                        <div class="mb-3">
+                            <InputLabel for="name" value="Название Роли"/>
 
                             <TextInput
                                 id="name"
@@ -69,9 +82,18 @@ const form = useForm({
                                 autocomplete="name"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.name" />
+                            <InputError class="mt-2" :message="form.errors.name"/>
                         </div>
-
+                        <div>
+                            <VueMultiselect v-model="form.permissions"
+                                         :options="permissions"
+                                         :multiple="true"
+                                         :close-on-select="true"
+                                         placeholder="Выбрать"
+                                         label="name"
+                                         track-by="id"
+                                          />
+                        </div>
                         <div class="flex items-center justify-end mt-4">
                             <PrimaryButton
                                 class="ms-4"
@@ -83,8 +105,55 @@ const form = useForm({
                         </div>
                     </form>
                 </div>
+                <div class="bg-white shadow-lg rounded-sm border border-slate-200 relative w-80">
+                    <div class="px-5 py-4">
+                        <h2 class="text-center font-semibold text-amber-500">
+                            Все Разрешения для этой Роли
+                        </h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                    <table class="table-auto w-full">
+                        <thead
+                            class="text-xs font-semibold uppercase text-slate-700 bg-slate-50 border-t border-b border-slate-200">
+                        <tr>
+                            <!-- Заголовки столбцов -->
+                            <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
+                                <span class="sr-only">ID</span>
+                            </th>
+                            <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                                <div class="font-semibold text-left">Имя</div>
+                            </th>
+                            <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                                <div class="font-semibold text-center">Действия</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-200">
+                        <tr v-for="rolePermission in role.permissions" :key="rolePermission.id">
+                            <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap px">
+                                <div class="text-left">{{ rolePermission.id }}</div>
+                            </td>
+                            <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
+                                <div class="text-left">{{ rolePermission.name }}</div>
+                            </td>
+                            <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
+                                <div class="flex justify-center">
+                                    <DeleteButton :href="
+                                    route('roles.permissions.destroy', [role.id, rolePermission.id])
+                                    ">
+                                    </DeleteButton>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                </div>
             </div>
 
         </div>
     </AdminLayout>
 </template>
+
+<style src="../../../../css/vue-multiselect.min.css"></style>
