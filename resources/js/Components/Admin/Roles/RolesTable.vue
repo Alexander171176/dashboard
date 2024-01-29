@@ -1,10 +1,27 @@
 <script setup>
-import {defineProps} from 'vue'
+import {defineProps, ref} from 'vue'
+import {useForm} from '@inertiajs/vue3'
 import IconButton from "@/Components/Admin/Buttons/IconButton.vue";
 import DeleteButton from "@/Components/Admin/Buttons/DeleteButton.vue";
+import DangerModal from "@/Components/Admin/Modal/DangerModal.vue"
 
 const props = defineProps(['roles', 'rolesCount']);
 const tooltipButtonEdit = 'редактировать'
+
+const form = useForm({})
+
+const showConfirmDeleteModal = ref(false)
+const confirmDelete = () => {
+    showConfirmDeleteModal.value = true;
+}
+const closeModal = () => {
+    showConfirmDeleteModal.value = false;
+}
+const deleteRole = (id) => {
+    form.delete(route('roles.destroy', id), {
+        onSuccess: () => closeModal()
+    });
+}
 </script>
 
 <template>
@@ -51,7 +68,22 @@ const tooltipButtonEdit = 'редактировать'
                                     </svg>
                                 </template>
                             </IconButton>
-                            <DeleteButton :href="route('roles.destroy', role.id)"></DeleteButton>
+                            <button @click="confirmDelete" class="btn border-rose-200 hover:border-rose-500"  title="удалить">
+                                <svg class="w-4 h-4 fill-current text-orange-500 shrink-0" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z"/>
+                                </svg>
+                            </button>
+                            <DangerModal :show="showConfirmDeleteModal" @close="closeModal">
+                                <button
+                                    class="btn-sm border-slate-200 hover:border-slate-300 text-slate-600"
+                                    @click="closeModal">Отмена
+                                </button>
+                                <button class="btn-sm bg-rose-500 hover:bg-rose-600 text-white"
+                                        @click="$event => deleteRole(role.id)">Да,
+                                    Удалить
+                                </button>
+                            </DangerModal>
                         </div>
                     </td>
                 </tr>
