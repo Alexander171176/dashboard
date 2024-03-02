@@ -37,7 +37,7 @@
                     @focusin="dropdownOpen = true"
                     @focusout="dropdownOpen = false"
                 >
-                    <DropdownLink :href="route('profile.edit')"> Профиль</DropdownLink>
+                    <DropdownLink :href="route('profile.index')"> Профиль</DropdownLink>
                     <router-link
                         class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
                         :to="{ name: 'logout' }" method="post" as="button"

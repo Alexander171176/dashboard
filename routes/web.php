@@ -32,9 +32,12 @@ Route::get('/dashboard', function () {
 
 // Группа маршрутов авторизованного пользователя от Laravel
 Route::middleware('auth')->group(function () {
+    Route::get('/account', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/upload-avatar', [App\Http\Controllers\AvatarController::class, 'upload']);
+
 });
 
 // маршрутов для панели модератора

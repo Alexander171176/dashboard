@@ -16,6 +16,12 @@ class User extends Authenticatable
 
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    // Определение отношения с аватаром
+    public function avatar(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Avatar::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

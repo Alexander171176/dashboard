@@ -83,3 +83,10 @@
 
 20) Create resource UserSharedResource <br>
     `docker exec php-app php artisan make:resource UserSharedResource` <br>
+
+21) `docker exec php-app php artisan make:model Avatar -mc` <br>
+    `docker exec php-app php artisan migrate`<br>
+
+22) `docker exec php-app php artisan storage:link`<br> 
+    `docker exec php-app rm public/storage`<br>
+    `docker exec php-app php artisan storage:link`<br>

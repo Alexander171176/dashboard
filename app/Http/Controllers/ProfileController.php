@@ -3,46 +3,74 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Avatar;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): Response
+    public function index(Request $request): Response
     {
-        return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
+        $user = $request->user();
+        $avatar = $user->avatar ? Avatar::find($user->avatar)->first() : null; // Получаем объект модели Avatar
+
+        // Теперь можно безопасно обращаться к свойству 'path'
+        $avatarPath = $avatar ? $avatar->path : null;
+
+        return Inertia::render('Profile/Index', [
+            'user' => $user,
+            'avatar' => $avatarPath,
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+    public function edit(Request $request): Response
+    {
+        $user = $request->user();
+        $avatar = $user->avatar ? Avatar::find($user->avatar)->first() : null; // Получаем аватар пользователя
+
+        // Теперь можно безопасно обращаться к свойству 'path'
+        $avatarPath = $avatar ? $avatar->path : null;
+
+        // Отладочный вывод для проверки данных об аватаре
+        //dd($avatar);
+
+        return Inertia::render('Profile/Edit', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+            'user' => $user,
+            'avatar' => $avatarPath,
+        ]);
+    }
+
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $userData = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('public/avatars');
+            $avatar = Avatar::updateOrCreate(
+                ['user_id' => $user->id],
+                ['path' => $avatarPath]
+            );
         }
 
-        $request->user()->save();
+        if ($user->email !== $userData['email']) {
+            $user->email_verified_at = null;
+        }
+
+        $user->fill($userData)->save();
 
         return Redirect::route('profile.edit');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validate([
@@ -51,13 +79,19 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        Auth::logout();
+        // Удаляем аватарку, если она есть
+        if ($user->avatar) {
+            Storage::delete($user->avatar);
+        }
 
+        // Удаляем пользователя
         $user->delete();
 
+        // Инвалидируем текущую сессию и обновляем CSRF-токен
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
     }
 }
+
