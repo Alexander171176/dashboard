@@ -10,16 +10,12 @@ use Inertia\Response;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request):Response
+    public function index(Request $request): Response
     {
         $user = $request->user();
-        $avatar = $user->avatar ? Avatar::find($user->avatar)->first() : null; // Получаем объект модели Avatar
-
-        // Теперь можно безопасно обращаться к свойству 'path'
-        $avatarPath = $avatar ? $avatar->path : null;
+        $avatarPath = Avatar::getUserAvatarPath($user->id);
 
         return Inertia::render('User/Dashboard', [
-            'user' => $user,
             'avatar' => $avatarPath,
         ]);
     }

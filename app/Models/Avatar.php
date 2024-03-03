@@ -19,4 +19,11 @@ class Avatar extends Model
     }
 
     protected $fillable = ['path'];
+
+    // Метод для получения пути к аватар пользователя
+    public static function getUserAvatarPath($userId)
+    {
+        $avatar = Avatar::where('user_id', $userId)->first();
+        return $avatar ? $avatar->path : null;
+    }
 }
