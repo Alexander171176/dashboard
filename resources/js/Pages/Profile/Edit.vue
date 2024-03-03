@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Head, usePage } from '@inertiajs/vue3'
 import defaultAvatar from '../../../images/user-avatar-32.png'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import Datepicker from '@/Components/Admin/Datepicker.vue'
+import DefaultButton from '@/Components/Admin/Buttons/DefaultButton.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue'
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue'
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue'
@@ -70,7 +70,13 @@ const onFileChange = (event) => {
                 <!-- Right: Actions -->
                 <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
                     <!-- Datepicker built with flatpickr -->
-                    <Datepicker align="right"/>
+                    <DefaultButton :href="route('profile.index')">
+                        <template #icon>
+                            <!-- Ваш SVG -->
+                            <i class="fas fa-redo-alt"></i>
+                        </template>
+                        Вернуться назад
+                    </DefaultButton>
                 </div>
             </div>
 

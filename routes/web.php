@@ -26,9 +26,9 @@ Route::get('/', function () {
 });
 
 // маршрут личного кабинета зарегистрированного пользователя
-Route::get('/dashboard', function () {
-    return Inertia::render('User/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard');
+});
 
 // Группа маршрутов авторизованного пользователя от Laravel
 Route::middleware('auth')->group(function () {
@@ -37,7 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/upload-avatar', [App\Http\Controllers\AvatarController::class, 'upload']);
-
 });
 
 // маршрутов для панели модератора

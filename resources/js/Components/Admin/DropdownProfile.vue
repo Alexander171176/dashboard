@@ -1,58 +1,3 @@
-<script>
-import {ref, onMounted, onUnmounted} from 'vue'
-import Dropdown from '@/Components/Admin/Dropdown.vue'
-import DropdownLink from '@/Components/Admin/DropdownLink.vue'
-import defaultAvatar from '../../../images/user-avatar-32.png'
-
-export default {
-    name: 'DropdownProfile',
-    props: ['align', 'avatar'],
-
-    data() {
-        return {
-            UserAvatar: defaultAvatar,
-        }
-    },
-    components: {
-        Dropdown,
-        DropdownLink,
-    },
-    setup() {
-        const dropdownOpen = ref(false)
-        const trigger = ref(null)
-        const dropdown = ref(null)
-
-        // close on click outside
-        const clickHandler = ({target}) => {
-            if (!dropdownOpen.value || dropdown.value.contains(target) || trigger.value.contains(target)) return
-            dropdownOpen.value = false
-        }
-
-        // close if the esc key is pressed
-        const keyHandler = ({keyCode}) => {
-            if (!dropdownOpen.value || keyCode !== 27) return
-            dropdownOpen.value = false
-        }
-
-        onMounted(() => {
-            document.addEventListener('click', clickHandler)
-            document.addEventListener('keydown', keyHandler)
-        })
-
-        onUnmounted(() => {
-            document.removeEventListener('click', clickHandler)
-            document.removeEventListener('keydown', keyHandler)
-        })
-
-        return {
-            dropdownOpen,
-            trigger,
-            dropdown,
-        }
-    }
-}
-</script>
-
 <template>
     <div class="relative inline-flex">
         <button
@@ -62,10 +7,10 @@ export default {
             @click.prevent="dropdownOpen = !dropdownOpen"
             :aria-expanded="dropdownOpen"
         >
-            <img class="w-8 h-8 rounded-full" :src="UserAvatar" width="32" height="32" alt="User"/>
+            <img class="w-8 h-8 rounded-full" :src="userAvatar" width="32" height="32" alt="User"/>
             <div class="flex items-center truncate">
                 <span class="truncate ml-2 text-sm font-medium group-hover:text-slate-500">
-                    {{ $page.props.auth.user.name }}
+                    {{ user.name }}
                 </span>
                 <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"/>
@@ -84,7 +29,7 @@ export default {
                  class="origin-top-right z-10 absolute top-full min-w-44 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
                  :class="align === 'right' ? 'right-0' : 'left-0'">
                 <div class="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-                    <div class="font-medium text-slate-800">{{ $page.props.auth.user.name }}</div>
+                    <div class="font-medium text-slate-800">{{ user.name }}</div>
                     <div class="text-xs text-slate-500 italic">Администратор</div>
                 </div>
                 <ul
@@ -99,10 +44,66 @@ export default {
                         @click.prevent="$inertia.post(route('logout'))">
                         Выход
                     </router-link>
-
-
                 </ul>
             </div>
         </transition>
     </div>
 </template>
+
+<script>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { usePage } from '@inertiajs/vue3'
+import Dropdown from '@/Components/Admin/Dropdown.vue'
+import DropdownLink from '@/Components/Admin/DropdownLink.vue'
+
+export default {
+    name: 'DropdownProfile',
+    props: ['align', 'avatar'],
+    components: {
+        Dropdown,
+        DropdownLink
+    },
+    setup() {
+        const { user, avatar } = usePage().props;
+        const defaultAvatar = '../../../images/user-avatar-32.png'; // Замените путь на ваш путь к изображению по умолчанию
+
+        // Путь к изображению пользователя
+        const userAvatar = ref(avatar ? `/storage/${avatar}` : defaultAvatar);
+
+        const dropdownOpen = ref(false)
+        const trigger = ref(null)
+        const dropdown = ref(null)
+
+        // close on click outside
+        const clickHandler = ({ target }) => {
+            if (!dropdownOpen.value || dropdown.value.contains(target) || trigger.value.contains(target)) return
+            dropdownOpen.value = false
+        }
+
+        // close if the esc key is pressed
+        const keyHandler = ({ keyCode }) => {
+            if (!dropdownOpen.value || keyCode !== 27) return
+            dropdownOpen.value = false
+        }
+
+        onMounted(() => {
+            document.addEventListener('click', clickHandler)
+            document.addEventListener('keydown', keyHandler)
+        })
+
+        onUnmounted(() => {
+            document.removeEventListener('click', clickHandler)
+            document.removeEventListener('keydown', keyHandler)
+        })
+
+        return {
+            user,
+            userAvatar,
+            dropdownOpen,
+            trigger,
+            dropdown,
+        }
+    }
+}
+</script>
+
