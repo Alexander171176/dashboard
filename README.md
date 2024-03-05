@@ -52,41 +52,49 @@
     `docker exec php-app php artisan migrate` <br>
 
 13) create seeders <br>
-    `docker exec php-app php artisan make:seeder RoleSeeder` <br>
-    `docker exec php-app php artisan make:seeder AdminSeeder` <br>
+    `docker exec php-app php artisan make:seeder Admin/Role/RoleSeeder` <br>
+    `docker exec php-app php artisan make:seeder Admin/User/AdminSeeder` <br>
     `docker exec php-app php artisan db:seed` <br>
 
 14) Create AdminController <br>
     `docker exec php-app php artisan make:controller Admin/AdminController` <br>
 
-15) Create resource UserResource <br>
-    `docker exec php-app php artisan make:resource UserResource` <br>
-    `docker exec php-app php artisan make:resource RoleResource` <br>
-    `docker exec php-app php artisan make:resource PermissionResource` <br>
+15) Create resource UserResource, RoleResource, PermissionResource <br>
+    `docker exec php-app php artisan make:resource Admin/User/UserResource` <br>
+    `docker exec php-app php artisan make:resource Admin/Role/RoleResource` <br>
+    `docker exec php-app php artisan make:resource Admin/Permission/PermissionResource` <br>
 
 16) Create resource controllers UserController,RoleController,PermissionController <br>
-    `docker exec php-app php artisan make:controller Crud/UserController --resource` <br>
-    `docker exec php-app php artisan make:controller Crud/RoleController --resource` <br>
-    `docker exec php-app php artisan make:controller Crud/PermissionController --resource` <br>
+    `docker exec php-app php artisan make:controller Admin/User/UserController --resource` <br>
+    `docker exec php-app php artisan make:controller Admin/Role/RoleController --resource` <br>
+    `docker exec php-app php artisan make:controller Admin/Permission/PermissionController --resource` <br>
 
-17) Create requests <br>
-    `docker exec php-app php artisan make:request CreateRoleRequest` <br>
-    `docker exec php-app php artisan make:request CreatePermissionRequest` <br>
+17) Create requests CreateRoleRequest, CreatePermissionRequest <br>
+    `docker exec php-app php artisan make:request Admin/Role/CreateRoleRequest` <br>
+    `docker exec php-app php artisan make:request Admin/Permission/CreatePermissionRequest` <br>
 
 18) Install vue-multiselect <br>
     `npm install vue-multiselect@next` <br>
 
-19) Create revoke controller <br>
-    `docker exec php-app php artisan make:controller CRUD/Ivokable/RemovePermissionFromRoleController --invokable` <br>
-    `docker exec php-app php artisan make:controller CRUD/Ivokable/RemoveRoleFromUserController --invokable` <br>
-    `docker exec php-app php artisan make:controller CRUD/Ivokable/RemovePermissionFromUserController --invokable` <br>
+19) Create revoke controllers <br>
+    `docker exec php-app php artisan make:controller Admin/Ivokable/RemovePermissionFromRoleController --invokable` <br>
+    `docker exec php-app php artisan make:controller Admin/Ivokable/RemoveRoleFromUserController --invokable` <br>
+    `docker exec php-app php artisan make:controller Admin/Ivokable/RemovePermissionFromUserController --invokable` <br>
 
 20) Create resource UserSharedResource <br>
-    `docker exec php-app php artisan make:resource UserSharedResource` <br>
+    `docker exec php-app php artisan make:resource Admin/User/UserSharedResource` <br>
 
-21) `docker exec php-app php artisan make:model Avatar -mc` <br>
+21) Create model Avatar, AvatarController
+    `docker exec php-app php artisan make:model Admin/User/Avatar -m` <br>
     `docker exec php-app php artisan migrate`<br>
+    `docker exec php-app php artisan make:controller Admin/User/AvatarController` <br>
 
-22) `docker exec php-app php artisan storage:link`<br> 
+22) Create link Storage 
+    `docker exec php-app php artisan storage:link`<br> 
     `docker exec php-app rm public/storage`<br>
     `docker exec php-app php artisan storage:link`<br>
+
+23) Create model Rubric, RubricController, RubricResource
+    `docker exec php-app php artisan make:model Admin/Rubric/Rubric -m` <br>
+    `docker exec php-app php artisan make:controller Admin/Rubric/RubricController --resource` <br>
+    `docker exec php-app php artisan make:resource Admin/Rubric/RubricResource` <br>

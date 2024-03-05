@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Resources\UserSharedResource;
+use App\Http\Resources\Admin\User\UserSharedResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 

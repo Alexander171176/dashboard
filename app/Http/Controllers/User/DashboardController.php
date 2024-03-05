@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Avatar;
+use App\Models\Admin\User\Avatar;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
