@@ -2,7 +2,7 @@
 import { defineModel, defineExpose, ref, onMounted } from 'vue'
 
 const model = defineModel({
-    type: String,
+    type: Number,
     required: true
 })
 
@@ -24,3 +24,6 @@ defineExpose({focus: () => input.value.focus()})
         ref="input"
     />
 </template>
+
+
+

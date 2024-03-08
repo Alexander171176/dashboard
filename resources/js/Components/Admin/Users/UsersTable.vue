@@ -31,7 +31,7 @@ const deleteUser = (id) => {
     </div>
     <div class="bg-white shadow-lg rounded-sm border border-slate-200 relative">
         <div class="overflow-x-auto">
-            <table class="table-auto w-full">
+            <table v-if="usersCount > 0" class="table-auto w-full">
                 <thead
                     class="text-xs font-semibold uppercase text-slate-700 bg-slate-50 border-t border-b border-slate-200">
                 <tr>

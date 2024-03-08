@@ -57,14 +57,14 @@ const form = useForm({
                 <div class="bg-white p-5 shadow-lg rounded-sm border border-slate-200 w-80">
                     <form @submit.prevent="form.post(route('roles.store'))">
                         <div class="mb-3">
-                            <InputLabel for="name" value="Название Роли" />
+                            <InputLabel for="name" value="Название Роли *" />
 
                             <TextInput
                                 id="name"
                                 type="text"
                                 class="mt-1 block w-full"
                                 v-model="form.name"
-                                autofocus
+                                requireds
                                 autocomplete="name"
                             />
 
@@ -72,6 +72,8 @@ const form = useForm({
                         </div>
 
                         <div>
+                            <InputLabel for="name" value="Разрешения" />
+
                             <VueMultiselect v-model="form.permissions"
                                             :options="permissions"
                                             :multiple="true"
@@ -82,12 +84,17 @@ const form = useForm({
                             />
                         </div>
 
-                        <div class="flex items-center justify-end mt-4">
+                        <div class="flex items-center justify-center mt-4">
                             <PrimaryButton
                                 class="ms-4"
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
                             >
+                                <template #icon>
+                                    <!-- Ваш SVG -->
+                                    <i class="far fa-save"></i>
+                                </template>
+
                                 Создать
                             </PrimaryButton>
                         </div>

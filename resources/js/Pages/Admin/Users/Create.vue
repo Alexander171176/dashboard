@@ -70,7 +70,7 @@ const submit = () => {
                         <div class="flex flex-col">
 
                                 <div class="mb-3">
-                                    <InputLabel for="name" value="Имя Пользователя"/>
+                                    <InputLabel for="name" value="Имя Пользователя *"/>
 
                                     <TextInput
                                         id="name"
@@ -78,7 +78,6 @@ const submit = () => {
                                         class="mt-1 block w-full"
                                         v-model="form.name"
                                         required
-                                        autofocus
                                         autocomplete="name"
                                     />
 
@@ -86,7 +85,7 @@ const submit = () => {
                                 </div>
 
                                 <div class="mb-3">
-                                    <InputLabel for="email" value="Email Пользователя"/>
+                                    <InputLabel for="email" value="Email Пользователя *"/>
 
                                     <TextInput
                                         id="email"
@@ -94,7 +93,6 @@ const submit = () => {
                                         class="mt-1 block w-full"
                                         v-model="form.email"
                                         required
-                                        autofocus
                                         autocomplete="username"
                                     />
 
@@ -102,7 +100,7 @@ const submit = () => {
                                 </div>
 
                                 <div class="mb-3">
-                                    <InputLabel for="password" value="Пароль"/>
+                                    <InputLabel for="password" value="Пароль *"/>
 
                                     <TextInput
                                         id="password"
@@ -117,7 +115,7 @@ const submit = () => {
                                 </div>
 
                                 <div class="mb-3">
-                                    <InputLabel for="password_confirmation" value="повторите Пароль"/>
+                                    <InputLabel for="password_confirmation" value="повторите Пароль *"/>
 
                                     <TextInput
                                         id="password_confirmation"

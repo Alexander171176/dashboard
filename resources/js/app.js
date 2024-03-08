@@ -10,7 +10,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 // Импортируйте роутер из отдельного файла
 import router from './router';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Приложение';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -26,5 +26,7 @@ createInertiaApp({
     baseUrl: '/',
     progress: {
         color: '#4B5563',
+        includeCSS: true,
+        showSpinner: true,
     },
 });

@@ -2,7 +2,6 @@
 import {defineProps, ref} from 'vue'
 import {useForm} from '@inertiajs/vue3'
 import IconButton from "@/Components/Admin/Buttons/IconButton.vue";
-import DeleteButton from "@/Components/Admin/Buttons/DeleteButton.vue";
 import DangerModal from "@/Components/Admin/Modal/DangerModal.vue"
 
 const props = defineProps(['roles', 'rolesCount']);
@@ -32,7 +31,7 @@ const deleteRole = (id) => {
     </div>
     <div class="bg-white shadow-lg rounded-sm border border-slate-200 relative">
         <div class="overflow-x-auto">
-            <table class="table-auto w-full">
+            <table v-if="rolesCount > 0" class="table-auto w-full">
                 <thead
                     class="text-xs font-semibold uppercase text-slate-700 bg-slate-50 border-t border-b border-slate-200">
                 <tr>

@@ -1,7 +1,17 @@
+
+
 <template>
     <button
-        class="inline-flex items-center px-4 py-2 bg-sky-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-sky-700 focus:bg-sky-700 active:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+        class="btn inline-flex items-center px-4 py-2 bg-teal-500 border border-transparent font-semibold text-md text-white hover:bg-teal-600 focus:bg-teal-600 active:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 transition ease-in-out duration-150"
     >
-        <slot/>
+        <span class="hidden xs:block ml-2">
+            <slot name="icon">
+                <!-- По умолчанию ваш SVG будет тут -->
+                <i class="far fa-save"></i>
+            </slot>
+        </span>
+        <span class="hidden xs:block ml-2">
+            <slot />
+        </span>
     </button>
 </template>

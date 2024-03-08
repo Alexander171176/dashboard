@@ -52,8 +52,8 @@
     `docker exec php-app php artisan migrate` <br>
 
 13) create seeders <br>
-    `docker exec php-app php artisan make:seeder Admin/Role/RoleSeeder` <br>
-    `docker exec php-app php artisan make:seeder Admin/User/AdminSeeder` <br>
+    `docker exec php-app php artisan make:seeder RoleSeeder` <br>
+    `docker exec php-app php artisan make:seeder AdminSeeder` <br>
     `docker exec php-app php artisan db:seed` <br>
 
 14) Create AdminController <br>
@@ -94,7 +94,22 @@
     `docker exec php-app rm public/storage`<br>
     `docker exec php-app php artisan storage:link`<br>
 
-23) Create model Rubric, RubricController, RubricResource
+23) Create model Rubric, migration, seed, RubricController, RubricResource
     `docker exec php-app php artisan make:model Admin/Rubric/Rubric -m` <br>
+    `docker exec php-app php artisan migrate`<br>
     `docker exec php-app php artisan make:controller Admin/Rubric/RubricController --resource` <br>
     `docker exec php-app php artisan make:resource Admin/Rubric/RubricResource` <br>
+    `docker exec php-app php artisan make:seeder Admin/Rubric/RubricSeeder` <br>
+    `docker exec php-app php artisan db:seed --class=RubricSeeder` <br>
+    `docker exec php-app php artisan make:request Admin/Rubric/CreateRubricRequest` <br>
+
+25) Create model Article, migration, seed, ArticleController, ArticleResource
+    `docker exec php-app php artisan make:model Admin/Article/Article -m` <br>
+    `docker exec php-app php artisan migrate`<br>
+    `docker exec php-app php artisan make:controller Admin/Article/ArticleController --resource` <br>
+    `docker exec php-app php artisan make:resource Admin/Article/ArticleResource` <br>
+    `docker exec php-app php artisan make:seeder Admin/Article/ArticleSeeder` <br>
+    `docker exec php-app php artisan db:seed --class=ArticleSeeder` <br>
+    `docker exec php-app php artisan make:request Admin/Article/CreateArticleRequest` <br>
+    `docker exec php-app php artisan make:controller Admin/Ivokable/RemoveArticleFromRubricController --invokable` <br>
+

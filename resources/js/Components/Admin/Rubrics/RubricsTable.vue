@@ -1,10 +1,10 @@
 <script setup>
 import {defineProps, ref} from 'vue'
+import {useForm} from '@inertiajs/vue3'
 import IconButton from "@/Components/Admin/Buttons/IconButton.vue";
 import DangerModal from "@/Components/Admin/Modal/DangerModal.vue"
-import {useForm} from "@inertiajs/vue3";
 
-const props = defineProps(['permissions', 'permissionsCount'])
+const props = defineProps(['rubrics', 'rubricsCount']);
 const tooltipButtonEdit = 'редактировать'
 
 const form = useForm({})
@@ -16,8 +16,8 @@ const confirmDelete = () => {
 const closeModal = () => {
     showConfirmDeleteModal.value = false;
 }
-const deletePermission = (id) => {
-    form.delete(route('permissions.destroy', id), {
+const deleteRubric = (id) => {
+    form.delete(route('rubrics.destroy', id), {
         onSuccess: () => closeModal()
     });
 }
@@ -26,12 +26,12 @@ const deletePermission = (id) => {
 <template>
     <div class="px-5 py-1 text-right">
         <h2 class="font-semiboldtext-slate-800">
-            Всего: <span class="text-blue-500 font-medium">{{ permissionsCount }}</span>
+            Всего: <span class="text-blue-500 font-medium">{{ rubricsCount }}</span>
         </h2>
     </div>
     <div class="bg-white shadow-lg rounded-sm border border-slate-200 relative">
         <div class="overflow-x-auto">
-            <table v-if="permissionsCount > 0" class="table-auto w-full">
+            <table v-if="rubricsCount > 0" class="table-auto w-full">
                 <thead
                     class="text-xs font-semibold uppercase text-slate-700 bg-slate-50 border-t border-b border-slate-200">
                 <tr>
@@ -40,25 +40,49 @@ const deletePermission = (id) => {
                         <span class="sr-only">ID</span>
                     </th>
                     <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                        <div class="font-semibold text-left">Имя</div>
+                        <div class="font-semibold text-left">Заголовок</div>
+                    </th>
+                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                        <div class="font-semibold text-left">Адрес</div>
+                    </th>
+<!--                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">-->
+<!--                        <div class="font-semibold text-left">Изображение</div>-->
+<!--                    </th>-->
+                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                        <div class="font-semibold text-left">Дата создания</div>
+                    </th>
+                    <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+                        <div class="font-semibold text-left">Дата обновления</div>
                     </th>
                     <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                         <div class="font-semibold text-center">Действия</div>
                     </th>
                 </tr>
                 </thead>
-                <tbody class="text-sm divide-y divide-slate-200" v-for="permission in permissions" :key="permission.id">
-                <!-- Отображение пользователей -->
+                <tbody class="text-sm divide-y divide-slate-200" v-for="rubric in rubrics" :key="rubric.id">
+                <!-- Отображение рубрик -->
                 <tr class="border-b-2 hover:bg-slate-100">
                     <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap px">
-                        <div class="text-left">{{ permission.id }}</div>
+                        <div class="text-left">{{ rubric.id }}</div>
                     </td>
                     <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
-                        <div class="text-left">{{ permission.name }}</div>
+                        <div class="text-left">{{ rubric.title }}</div>
+                    </td>
+                    <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
+                        <div class="text-left">{{ rubric.url }}</div>
+                    </td>
+<!--                    <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">-->
+<!--                        <div class="text-left">{{ rubric.image_url }}, {{ rubric.seo_title }}, {{ rubric.seo_alt }}</div>-->
+<!--                    </td>-->
+                    <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
+                        <div class="text-left">{{ rubric.created_at }}</div>
+                    </td>
+                    <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
+                        <div class="text-left">{{ rubric.updated_at }}</div>
                     </td>
                     <td class="px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap">
                         <div class="flex justify-center">
-                            <IconButton :href="route('permissions.edit', permission.id)" :tooltip-text="tooltipButtonEdit">
+                            <IconButton :href="route('rubrics.edit', rubric.id)" :tooltip-text="tooltipButtonEdit">
                                 <template #svg>
                                     <!-- Ваш SVG -->
                                     <svg class="w-4 h-4 fill-current text-teal-500 shrink-0" viewBox="0 0 16 16">
@@ -79,7 +103,7 @@ const deletePermission = (id) => {
                                     @click="closeModal">Отмена
                                 </button>
                                 <button class="btn-sm bg-rose-500 hover:bg-rose-600 text-white"
-                                        @click="$event => deletePermission(permission.id)">Да,
+                                        @click="$event => deleteRubric(rubric.id)">Да,
                                     Удалить
                                 </button>
                             </DangerModal>

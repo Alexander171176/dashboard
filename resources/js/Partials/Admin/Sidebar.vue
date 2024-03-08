@@ -186,6 +186,27 @@ watch(sidebarExpanded, () => {
                             </div>
                         </LinkGroup>
 
+                        <!-- Rubrics -->
+                        <LinkGroup :href="route('rubrics.index')" :active="route().current('rubrics.index')"
+                                   class="mb-3 block text-slate-200 truncate transition duration-150">
+                            <div class="flex items-center justify-between">
+                                <div class="grow flex items-center">
+                                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                                        <circle class="fill-current text-blue-300"
+                                                cx="18.5" cy="5.5" r="4.5"/>
+                                        <circle class="fill-current text-blue-500"
+                                                cx="5.5" cy="5.5" r="4.5"/>
+                                        <circle class="fill-current text-blue-500"
+                                                cx="18.5" cy="18.5" r="4.5"/>
+                                        <circle class="fill-current text-blue-300"
+                                                cx="5.5" cy="18.5" r="4.5"/>
+                                    </svg>
+                                    <span
+                                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Рубрики</span>
+                                </div>
+                            </div>
+                        </LinkGroup>
+
                     </ul>
                 </div>
 

@@ -162,6 +162,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('/users', \App\Http\Controllers\Admin\User\UserController::class);
     Route::resource('/roles', \App\Http\Controllers\Admin\Role\RoleController::class);
     Route::resource('/permissions', \App\Http\Controllers\Admin\Permission\PermissionController::class);
+    Route::resource('/rubrics', \App\Http\Controllers\Admin\Rubric\RubricController::class);
 
     // Группа маршрутов для удаления опций
     Route::delete('/roles/{role}/permissions/{permission}',
