@@ -1,9 +1,15 @@
 FROM php:8.1-fpm-alpine
 
-# set working directory
+# Устанавливаем рабочую директорию
 WORKDIR /var/www
 
-# install dependencies
+# Устанавливаем зависимости
+FROM php:8.1-fpm-alpine
+
+# Устанавливаем рабочую директорию
+WORKDIR /var/www
+
+# Устанавливаем зависимости
 RUN apk --update add wget \
     curl \
     build-base \
@@ -20,13 +26,33 @@ RUN apk --update add wget \
     openssl-dev \
     postgresql-dev
 
-# install extensios
-RUN docker-php-ext-install pdo_pgsql pcntl
+# Устанавливаем расширения PHP
+RUN docker-php-ext-install pdo_pgsql pcntl exif
 
+# Копируем конфигурацию PHP
 COPY ./docker/php/php.ini /usr/local/etc/php/conf.d/php.ini
 
-# install composer
+# Устанавливаем Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename composer
 
-# clean up
-RUN rm /var/cache/apk/*
+# Очищаем кеш пакетного менеджера
+RUN rm -rf /var/cache/apk/*
+
+# Портим экосистему, чтобы создать образ нормального размера
+RUN rm -rf /usr/share/php8
+
+
+# Устанавливаем расширения PHP
+RUN docker-php-ext-install pdo_pgsql pcntl exif
+
+# Копируем конфигурацию PHP
+COPY ./docker/php/php.ini /usr/local/etc/php/conf.d/php.ini
+
+# Устанавливаем Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename composer
+
+# Очищаем кеш пакетного менеджера
+RUN rm -rf /var/cache/apk/*
+
+# Портим экосистему, чтобы создать образ нормального размера
+RUN rm -rf /usr/share/php8

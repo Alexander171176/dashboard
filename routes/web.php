@@ -30,6 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard');
 });
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 // Группа маршрутов авторизованного пользователя от Laravel
 Route::middleware('auth')->group(function () {
     Route::get('/account', [\App\Http\Controllers\User\Profile\ProfileController::class, 'index'])->name('profile.index');

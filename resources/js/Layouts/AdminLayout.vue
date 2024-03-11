@@ -2,7 +2,6 @@
 import {ref,computed} from 'vue'
 import Sidebar from '@/Partials/Admin/Sidebar.vue'
 import Header from '@/Partials/Admin/Header.vue'
-import Banner from '@/Partials/Admin/Banner.vue'
 import { usePage } from '@inertiajs/vue3'
 
 const page = usePage()
@@ -26,8 +25,6 @@ const sidebarOpen = ref(false);
             <main>
                 <slot/>
             </main>
-
-            <Banner/>
 
         </div>
 

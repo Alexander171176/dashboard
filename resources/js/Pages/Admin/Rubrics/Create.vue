@@ -1,15 +1,25 @@
 <script setup>
-import AdminLayout from '@/Layouts/AdminLayout.vue'
-import TitlePage from "@/Components/Admin/Headlines/TitlePage.vue";
-import DefaultButton from "@/Components/Admin/Buttons/DefaultButton.vue";
-import Datepicker from '@/Components/Admin/Datepicker.vue'
-import {Head, useForm} from '@inertiajs/vue3'
-import InputError from '@/Components/Admin/InputError.vue'
-import InputLabel from '@/Components/Admin/InputLabel.vue'
-import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
-import TextInput from '@/Components/Admin/TextInput.vue'
-import Textarea from '@/Components/Admin/Textarea.vue'
-import NumberInput from '@/Components/Admin/NumberInput.vue'
+    import AdminLayout from '@/Layouts/AdminLayout.vue'
+    import TitlePage from "@/Components/Admin/Headlines/TitlePage.vue";
+    import DefaultButton from "@/Components/Admin/Buttons/DefaultButton.vue";
+    import Datepicker from '@/Components/Admin/Datepicker.vue'
+    import {Head, useForm } from '@inertiajs/vue3'
+    import InputError from '@/Components/Admin/InputError.vue'
+    import InputLabel from '@/Components/Admin/InputLabel.vue'
+    import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
+    import TextInput from '@/Components/Admin/TextInput.vue'
+    import Textarea from '@/Components/Admin/Textarea.vue'
+    import NumberInput from '@/Components/Admin/NumberInput.vue'
+    import { component as CKEditor } from '@mayasabha/ckeditor4-vue3'
+    import { ref } from 'vue';
+
+    // Определите объект конфигурации для редактора CKEditor
+    const editorConfig = {
+        height: '200px',
+        // Другие настройки
+    };
+
+    const editorData = ref('');
 
 const form = useForm({
     title: '',
@@ -39,12 +49,13 @@ const limitInput = (field) => {
         form[field] = form[field].substring(0, maxChars[field]);
     }
 }
+
 </script>
 
 <template>
     <Head title="Создать Рубрику"/>
 
-    <AdminLayout>
+    <AdminLayout :CKEditor="CKEditor">
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
             <!-- Page header -->
@@ -154,16 +165,7 @@ const limitInput = (field) => {
 
                         <div class="mb-3">
                             <InputLabel for="description" value="Описание" />
-
-                            <Textarea
-                                id="description"
-                                class="mt-1 block w-full"
-                                v-model="form.description"
-                                :rows="8"
-                                autocomplete="description"
-                                placeholder="Описание рубрики…"
-                            />
-
+                            <CKEditor v-model="form.description" :config="editorConfig" />
                             <InputError class="mt-2" :message="form.errors.description" />
                         </div>
 
