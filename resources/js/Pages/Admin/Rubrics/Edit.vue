@@ -9,8 +9,14 @@ import InputError from '@/Components/Admin/InputError.vue'
 import InputLabel from '@/Components/Admin/InputLabel.vue'
 import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
 import TextInput from '@/Components/Admin/TextInput.vue'
-import Textarea from '@/Components/Admin/Textarea.vue'
 import NumberInput from '@/Components/Admin/NumberInput.vue'
+import {component as CKEditor} from '@mayasabha/ckeditor4-vue3'
+
+// Определите объект конфигурации для редактора CKEditor
+const editorConfig = {
+    height: '200px',
+    // Другие настройки
+};
 
 // Определяем пропсы компонента
 const props = defineProps({
@@ -154,18 +160,9 @@ onMounted(() => {
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="description" value="Описание" />
-
-                            <Textarea
-                                id="description"
-                                class="mt-1 block w-full"
-                                v-model="form.description"
-                                :rows="8"
-                                autocomplete="description"
-                                placeholder="Описание рубрики…"
-                            />
-
-                            <InputError class="mt-2 font-bold" :message="form.errors.description" />
+                            <InputLabel for="description" value="Описание"/>
+                            <CKEditor v-model="form.description" :config="editorConfig"/>
+                            <InputError class="mt-2 font-bold" :message="form.errors.description"/>
                         </div>
 
                         <div class="mb-3">

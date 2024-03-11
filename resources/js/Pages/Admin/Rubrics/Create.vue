@@ -1,25 +1,21 @@
 <script setup>
-    import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import TitlePage from "@/Components/Admin/Headlines/TitlePage.vue";
-    import DefaultButton from "@/Components/Admin/Buttons/DefaultButton.vue";
-    import Datepicker from '@/Components/Admin/Datepicker.vue'
-    import {Head, useForm } from '@inertiajs/vue3'
-    import InputError from '@/Components/Admin/InputError.vue'
-    import InputLabel from '@/Components/Admin/InputLabel.vue'
-    import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
-    import TextInput from '@/Components/Admin/TextInput.vue'
-    import Textarea from '@/Components/Admin/Textarea.vue'
-    import NumberInput from '@/Components/Admin/NumberInput.vue'
-    import { component as CKEditor } from '@mayasabha/ckeditor4-vue3'
-    import { ref } from 'vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue'
+import TitlePage from "@/Components/Admin/Headlines/TitlePage.vue";
+import DefaultButton from "@/Components/Admin/Buttons/DefaultButton.vue";
+import Datepicker from '@/Components/Admin/Datepicker.vue'
+import {Head, useForm} from '@inertiajs/vue3'
+import InputError from '@/Components/Admin/InputError.vue'
+import InputLabel from '@/Components/Admin/InputLabel.vue'
+import PrimaryButton from '@/Components/Admin/PrimaryButton.vue'
+import TextInput from '@/Components/Admin/TextInput.vue'
+import NumberInput from '@/Components/Admin/NumberInput.vue'
+import {component as CKEditor} from '@mayasabha/ckeditor4-vue3'
 
-    // Определите объект конфигурации для редактора CKEditor
-    const editorConfig = {
-        height: '200px',
-        // Другие настройки
-    };
-
-    const editorData = ref('');
+// Определите объект конфигурации для редактора CKEditor
+const editorConfig = {
+    height: '200px',
+    // Другие настройки
+};
 
 const form = useForm({
     title: '',
@@ -55,7 +51,7 @@ const limitInput = (field) => {
 <template>
     <Head title="Создать Рубрику"/>
 
-    <AdminLayout :CKEditor="CKEditor">
+    <AdminLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
             <!-- Page header -->
@@ -89,7 +85,7 @@ const limitInput = (field) => {
                     <form @submit.prevent="form.post(route('rubrics.store'))">
 
                         <div class="mb-3">
-                            <InputLabel for="title" value="Заголовок Рубрики *" />
+                            <InputLabel for="title" value="Заголовок Рубрики *"/>
 
                             <TextInput
                                 id="title"
@@ -100,12 +96,14 @@ const limitInput = (field) => {
                                 autocomplete="title"
                             />
 
-                            <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.title - form.title.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.title" />
+                            <p class="text-sm text-teal-600">Осталось символов: {{
+                                    maxChars.title - form.title.length
+                                }}</p>
+                            <InputError class="mt-2" :message="form.errors.title"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="url" value="url адрес *" />
+                            <InputLabel for="url" value="url адрес *"/>
 
                             <TextInput
                                 id="url"
@@ -117,11 +115,11 @@ const limitInput = (field) => {
                             />
 
                             <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.url - form.url.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.url" />
+                            <InputError class="mt-2" :message="form.errors.url"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="image_url" value="url изображения" />
+                            <InputLabel for="image_url" value="url изображения"/>
 
                             <TextInput
                                 id="image_url"
@@ -131,11 +129,11 @@ const limitInput = (field) => {
                                 autocomplete="image_url"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.image_url" />
+                            <InputError class="mt-2" :message="form.errors.image_url"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="seo_title" value="title изображения" />
+                            <InputLabel for="seo_title" value="title изображения"/>
 
                             <TextInput
                                 id="seo_title"
@@ -144,12 +142,13 @@ const limitInput = (field) => {
                                 v-model="form.seo_title"
                                 autocomplete="seo_title"
                             />
-                            <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.seo_title - form.seo_title.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.seo_title" />
+                            <p class="text-sm text-teal-600">Осталось символов:
+                                {{ maxChars.seo_title - form.seo_title.length }}</p>
+                            <InputError class="mt-2" :message="form.errors.seo_title"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="seo_alt" value="alt изображения" />
+                            <InputLabel for="seo_alt" value="alt изображения"/>
 
                             <TextInput
                                 id="seo_alt"
@@ -159,18 +158,19 @@ const limitInput = (field) => {
                                 autocomplete="seo_alt"
                             />
 
-                            <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.seo_alt - form.seo_alt.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.seo_alt" />
+                            <p class="text-sm text-teal-600">Осталось символов:
+                                {{ maxChars.seo_alt - form.seo_alt.length }}</p>
+                            <InputError class="mt-2" :message="form.errors.seo_alt"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="description" value="Описание" />
-                            <CKEditor v-model="form.description" :config="editorConfig" />
-                            <InputError class="mt-2" :message="form.errors.description" />
+                            <InputLabel for="description" value="Описание"/>
+                            <CKEditor v-model="form.description" :config="editorConfig"/>
+                            <InputError class="mt-2" :message="form.errors.description"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="meta_title" value="meta title" />
+                            <InputLabel for="meta_title" value="meta title"/>
 
                             <TextInput
                                 id="meta_title"
@@ -180,12 +180,13 @@ const limitInput = (field) => {
                                 autocomplete="meta_title"
                                 @input="() => limitInput('meta_title')"
                             />
-                            <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.meta_title - form.meta_title.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.meta_title" />
+                            <p class="text-sm text-teal-600">Осталось символов:
+                                {{ maxChars.meta_title - form.meta_title.length }}</p>
+                            <InputError class="mt-2" :message="form.errors.meta_title"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="meta_keywords" value="meta keywords" />
+                            <InputLabel for="meta_keywords" value="meta keywords"/>
 
                             <TextInput
                                 id="meta_keywords"
@@ -195,12 +196,13 @@ const limitInput = (field) => {
                                 autocomplete="meta_keywords"
                                 @input="() => limitInput('meta_keywords')"
                             />
-                            <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.meta_keywords - form.meta_keywords.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.meta_keywords" />
+                            <p class="text-sm text-teal-600">Осталось символов:
+                                {{ maxChars.meta_keywords - form.meta_keywords.length }}</p>
+                            <InputError class="mt-2" :message="form.errors.meta_keywords"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="meta_desc" value="meta description" />
+                            <InputLabel for="meta_desc" value="meta description"/>
 
                             <TextInput
                                 id="meta_desc"
@@ -210,12 +212,13 @@ const limitInput = (field) => {
                                 autocomplete="meta_desc"
                                 @input="() => limitInput('meta_desc')"
                             />
-                            <p class="text-sm text-teal-600">Осталось символов: {{ maxChars.meta_desc - form.meta_desc.length }}</p>
-                            <InputError class="mt-2" :message="form.errors.meta_desc" />
+                            <p class="text-sm text-teal-600">Осталось символов:
+                                {{ maxChars.meta_desc - form.meta_desc.length }}</p>
+                            <InputError class="mt-2" :message="form.errors.meta_desc"/>
                         </div>
 
                         <div class="mb-3">
-                            <InputLabel for="sort" value="сортировка" />
+                            <InputLabel for="sort" value="сортировка"/>
 
                             <NumberInput
                                 id="sort"
@@ -225,7 +228,7 @@ const limitInput = (field) => {
                                 autocomplete="sort"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.sort" />
+                            <InputError class="mt-2" :message="form.errors.sort"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
