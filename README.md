@@ -123,5 +123,4 @@
     `docker exec php-app php artisan make:request Admin/Article/CreateArticleRequest` <br>
     `docker exec php-app php artisan make:controller Admin/Ivokable/RemoveArticleFromRubricController --invokable` <br>
 
-28) Install CKEditor <br>
-    `npm install @mayasabha/ckeditor4-vue3` <br>
+
